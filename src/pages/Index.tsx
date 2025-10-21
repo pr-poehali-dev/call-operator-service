@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
 
-const PHONE_NUMBER = '+74951234567';
+const PHONE_NUMBER = '+74999299999';
 const AUTO_CALL_DELAY = 1500;
 
 export default function Index() {
@@ -72,7 +72,7 @@ export default function Index() {
             href={`tel:${PHONE_NUMBER}`}
             className="text-white/90 text-lg font-semibold hover:text-primary transition-colors"
           >
-            +7 (495) 123-45-67
+            +7 (499) 929-99-99
           </a>
         </div>
       </div>
