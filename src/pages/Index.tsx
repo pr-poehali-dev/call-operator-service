@@ -93,13 +93,15 @@ export default function Index() {
               }
               k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
             })
-            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js?id=104767901", "ym");
 
-            ym(12345678, "init", {
+            ym(104767901, "init", {
+                 ssr:true,
+                 webvisor:true,
                  clickmap:true,
-                 trackLinks:true,
+                 ecommerce:"dataLayer",
                  accurateTrackBounce:true,
-                 webvisor:true
+                 trackLinks:true
             });
           `,
         }}
