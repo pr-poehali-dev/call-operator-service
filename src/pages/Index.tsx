@@ -34,9 +34,9 @@ export default function Index() {
       <div className="relative z-10 flex flex-col items-center max-w-lg w-full animate-fade-in">
         <div className="mb-8 animate-scale-in">
           <img 
-            src="https://vodochet.ru/assets/cache_image/img/company/logo_psg_240x0_818.png" 
+            src="https://cdn.poehali.dev/files/7ebaf2cf-d3c3-40de-aa84-40854e185cae.jpg" 
             alt="ПСГ — Проект Сервис Групп" 
-            className="w-32 h-auto"
+            className="w-40 h-auto"
           />
         </div>
 
