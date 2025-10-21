@@ -104,7 +104,7 @@ export default function Index() {
         </div>
 
         <div className="mt-8 text-center">
-          <p className="text-white/60 text-sm mb-2">Телефон службы поддержки:</p>
+          <p className="text-white/60 text-sm mb-2">Телефон диспетчерской службы:</p>
           <a 
             href={`tel:${PHONE_NUMBER}`}
             className="text-white/90 text-lg font-semibold hover:text-primary transition-colors"
