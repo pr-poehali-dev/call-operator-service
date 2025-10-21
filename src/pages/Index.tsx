@@ -112,14 +112,6 @@ export default function Index() {
             +7 (499) 929-99-99
           </a>
         </div>
-
-        {callCount > 0 && (
-          <div className="mt-6 text-center">
-            <p className="text-white/40 text-xs">
-              Переходов к звонку: <span className="text-primary font-semibold">{callCount}</span>
-            </p>
-          </div>
-        )}
       </div>
 
       <footer className="absolute bottom-6 text-white/40 text-sm">
