@@ -4,12 +4,26 @@ import Icon from '@/components/ui/icon';
 
 const PHONE_NUMBER = '+74999299999';
 const AUTO_CALL_DELAY = 1500;
+const METRIKA_COUNTER_ID = 104767901;
+
+declare global {
+  interface Window {
+    ym: (counterId: number, action: string, target: string, params?: Record<string, unknown>) => void;
+  }
+}
 
 export default function Index() {
   const [isConnecting, setIsConnecting] = useState(true);
+  const [callCount, setCallCount] = useState(0);
 
   useEffect(() => {
+    const storedCount = localStorage.getItem('psg_call_count');
+    if (storedCount) {
+      setCallCount(parseInt(storedCount, 10));
+    }
+
     const timer = setTimeout(() => {
+      trackCall('auto');
       window.location.href = `tel:${PHONE_NUMBER}`;
     }, AUTO_CALL_DELAY);
 
@@ -23,7 +37,22 @@ export default function Index() {
     };
   }, []);
 
+  const trackCall = (source: 'auto' | 'manual') => {
+    const newCount = callCount + 1;
+    setCallCount(newCount);
+    localStorage.setItem('psg_call_count', newCount.toString());
+
+    if (typeof window.ym !== 'undefined') {
+      window.ym(METRIKA_COUNTER_ID, 'reachGoal', 'call_click', {
+        source,
+        phone: PHONE_NUMBER,
+        timestamp: new Date().toISOString()
+      });
+    }
+  };
+
   const handleManualCall = () => {
+    trackCall('manual');
     window.location.href = `tel:${PHONE_NUMBER}`;
   };
 
@@ -66,7 +95,15 @@ export default function Index() {
           Позвонить оператору по заявке
         </Button>
 
-        <div className="mt-12 text-center">
+        <div className="mt-8 px-6 py-4 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10">
+          <div className="flex items-center justify-center gap-2 mb-2">
+            <Icon name="Clock" className="w-5 h-5 text-primary" />
+            <p className="text-white/90 font-semibold">Заявки принимаются 24/7</p>
+          </div>
+          <p className="text-white/60 text-sm text-center">Наши операторы готовы помочь вам в любое время</p>
+        </div>
+
+        <div className="mt-8 text-center">
           <p className="text-white/60 text-sm mb-2">Телефон службы поддержки:</p>
           <a 
             href={`tel:${PHONE_NUMBER}`}
@@ -75,6 +112,14 @@ export default function Index() {
             +7 (499) 929-99-99
           </a>
         </div>
+
+        {callCount > 0 && (
+          <div className="mt-6 text-center">
+            <p className="text-white/40 text-xs">
+              Переходов к звонку: <span className="text-primary font-semibold">{callCount}</span>
+            </p>
+          </div>
+        )}
       </div>
 
       <footer className="absolute bottom-6 text-white/40 text-sm">
